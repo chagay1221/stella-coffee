@@ -60,6 +60,7 @@ export default function Header() {
                     <button
                         onClick={() => setIsHoursModalOpen(false)}
                         className="absolute top-4 left-4 text-wood/50 hover:text-wood bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors"
+                        aria-label="סגור חלונית שעות פתיחה"
                     >
                         <X size={20} />
                     </button>
@@ -145,7 +146,11 @@ export default function Header() {
                     </button>
 
                     {/* Mobile Menu Toggle (Simplified) */}
-                    <button className="md:hidden text-wood" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    <button
+                        className="md:hidden text-wood"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        aria-label={isMenuOpen ? "סגור תפריט" : "פתח תפריט"}
+                    >
                         <Menu />
                     </button>
                 </div>

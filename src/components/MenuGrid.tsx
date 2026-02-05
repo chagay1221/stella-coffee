@@ -59,6 +59,8 @@ export default function MenuGrid() {
                             <div
                                 className="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
                                 style={{ backgroundImage: `url(${item.image})` }}
+                                role="img"
+                                aria-label={item.title}
                             />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                         </div>
