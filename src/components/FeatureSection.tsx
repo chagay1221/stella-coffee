@@ -37,7 +37,7 @@ export default function FeatureSection() {
                         </div>
                         <h3 className="text-xl font-bold text-wood mb-2 font-serif">נגיש לכולם</h3>
                         <p className="text-wood/70 text-sm max-w-xs px-4">
-                            סטלה קפה מתאים לכל מי שאוהב את הטבע
+                            סטלה קפה מתאים לכל מי שאוהב את הטבע ונגיש לכולם, עם גישה נוחה ושבילים מותאמים כדי שכולם ירגישו כאן בבית
                         </p>
                     </div>
                 </div>
