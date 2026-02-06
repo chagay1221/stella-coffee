@@ -2,8 +2,8 @@ import { Navigation, Menu, Phone, Instagram } from "lucide-react";
 
 const utilities = [
     { icon: Menu, label: "תפריט", href: "#menu" },
-    { icon: Navigation, label: "מיקום", href: "https://waze.com/ul?ll=32.0478328,34.8979472&navigate=yes" },
-    { icon: Instagram, label: "אינסטגרם", href: "#" },
+    { icon: Navigation, label: "מיקום", href: "https://waze.com/ul?ll=32.0478328,34.8979472&navigate=yes", target: "_blank", rel: "noopener noreferrer" },
+    { icon: Instagram, label: "אינסטגרם", href: "https://www.instagram.com/stella_cafe_magshimim/", target: "_blank", rel: "noopener noreferrer" },
     { icon: Phone, label: "חייג", href: "tel:*" },
 ];
 
@@ -15,6 +15,8 @@ export default function UtilityBar() {
                     <a
                         key={index}
                         href={item.href}
+                        target={item.target}
+                        rel={item.rel}
                         className="flex flex-col items-center justify-center bg-white p-6 md:p-8 rounded-[2rem] shadow-sm hover:shadow-md border border-wood/5 transition-all duration-300 group"
                     >
                         <div className="bg-brand-green/10 p-4 rounded-full group-hover:bg-brand-green group-hover:text-white transition-all duration-300 mb-4 text-wood-dark">

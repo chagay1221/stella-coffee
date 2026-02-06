@@ -88,7 +88,7 @@ export default function Footer() {
                             עגלת קפה בוטיק בלב המטעים. מקום של טבע, שקט וטעמים טובים.
                         </p>
                         <div className="flex gap-4">
-                            <a href="#" className="bg-cream/10 p-2 rounded-full hover:bg-sage hover:text-wood transition-all" aria-label="Visit our Instagram"><Instagram size={20} /></a>
+                            <a href="https://www.instagram.com/stella_cafe_magshimim/" target="_blank" rel="noopener noreferrer" className="bg-cream/10 p-2 rounded-full hover:bg-sage hover:text-wood transition-all" aria-label="Visit our Instagram"><Instagram size={20} /></a>
                             <a href="#" className="bg-cream/10 p-2 rounded-full hover:bg-sage hover:text-wood transition-all" aria-label="Call us"><Phone size={20} /></a>
                             <a href="https://waze.com/ul?ll=32.0478328,34.8979472&navigate=yes" target="_blank" rel="noopener noreferrer" className="bg-cream/10 p-2 rounded-full hover:bg-sage hover:text-wood transition-all" aria-label="Navigate with Waze"><MapPin size={20} /></a>
                         </div>
