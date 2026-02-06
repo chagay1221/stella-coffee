@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <body
-        className={`${frankRuhl.variable} ${heebo.variable} antialiased bg-cream text-wood`}
+        className={`${frankRuhl.variable} ${heebo.variable} antialiased bg-cream text-wood overflow-x-hidden`}
       >
         {children}
       </body>
