@@ -1,8 +1,7 @@
 "use client";
 
-import { ArrowLeft, X } from "lucide-react";
-import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { useState } from "react";
 
 interface MenuCategory {
     id: string;
@@ -49,53 +48,14 @@ const CATEGORIES: MenuCategory[] = [
 ];
 
 export default function MenuGrid() {
-    const [selectedCategory, setSelectedCategory] = useState<MenuCategory | null>(null);
-    const [mounted, setMounted] = useState(false);
+    const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const MenuModal = () => {
-        if (!selectedCategory) return null;
-
-        return createPortal(
-            <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 text-center" dir="rtl">
-                <div
-                    className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
-                    onClick={() => setSelectedCategory(null)}
-                />
-
-                <div className="relative bg-white rounded-3xl p-6 md:p-8 shadow-2xl max-w-2xl w-full animate-fade-in-down border border-wood/10 max-h-[90vh] overflow-y-auto flex flex-col">
-                    <button
-                        onClick={() => setSelectedCategory(null)}
-                        className="absolute top-4 left-4 text-wood/50 hover:text-wood bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors z-10"
-                        aria-label="סגור תפריט"
-                    >
-                        <X size={20} />
-                    </button>
-
-                    <h3 className="text-3xl font-bold text-wood font-serif mb-2">{selectedCategory.title}</h3>
-                    <p className="text-wood/60 mb-8">{selectedCategory.description}</p>
-
-                    {/* Placeholder for the real menu image */}
-                    <div className="bg-cream/30 rounded-2xl border-2 border-dashed border-wood/20 p-12 flex flex-col items-center justify-center gap-4 min-h-[300px] text-wood/40">
-                        <div className="text-xl font-medium">כאן תופיע תמונה של התפריט</div>
-                        <div className="text-sm opacity-70">(מקום זה שמור להעלאת קובץ תמונה של התפריט המלא)</div>
-                    </div>
-
-                    <div className="mt-8 text-center">
-                        <button
-                            onClick={() => setSelectedCategory(null)}
-                            className="bg-brand-green text-white font-bold py-2 px-8 rounded-xl hover:bg-sage transition-colors shadow-lg"
-                        >
-                            סגור
-                        </button>
-                    </div>
-                </div>
-            </div>,
-            document.body
-        );
+    const toggleCategory = (id: string) => {
+        if (expandedCategory === id) {
+            setExpandedCategory(null);
+        } else {
+            setExpandedCategory(id);
+        }
     };
 
     return (
@@ -109,48 +69,69 @@ export default function MenuGrid() {
                 </span>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 gap-y-8 md:gap-y-12">
-                {CATEGORIES.map((category) => (
-                    <div
-                        key={category.id}
-                        className="group cursor-pointer flex flex-col h-full"
-                        onClick={() => setSelectedCategory(category)}
-                    >
-                        <div className="aspect-[4/5] w-full rounded-2xl md:rounded-[2rem] overflow-hidden mb-4 relative shadow-md group-hover:shadow-xl transition-all duration-500">
-                            {/* Image Hover Effect */}
-                            <div
-                                className="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
-                                style={{ backgroundImage: `url(${category.image})` }}
-                                role="img"
-                                aria-label={category.title}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+                {CATEGORIES.map((category) => {
+                    const isExpanded = expandedCategory === category.id;
 
-                            {/* Overlay Content */}
-                            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                                <div className="text-xs md:text-sm font-light opacity-90 mb-1">החל מ-</div>
-                                <div className="text-lg md:text-2xl font-bold font-sans">{category.priceLabel.replace("החל מ-", "")}</div>
+                    return (
+                        <div
+                            key={category.id}
+                            className={`group cursor-pointer flex flex-col transition-all duration-500 rounded-[2rem] border border-transparent ${isExpanded ? 'bg-white shadow-xl border-wood/5 p-4' : ''}`}
+                            onClick={() => toggleCategory(category.id)}
+                        >
+                            <div className={`aspect-[4/3] w-full rounded-2xl overflow-hidden mb-4 relative shadow-md transition-all duration-500 ${isExpanded ? 'aspect-video' : ''}`}>
+                                {/* Image Hover Effect */}
+                                <div
+                                    className="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                                    style={{ backgroundImage: `url(${category.image})` }}
+                                    role="img"
+                                    aria-label={category.title}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+
+                                {/* Overlay Content */}
+                                <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                    <div className="text-xs font-light opacity-90 mb-1">החל מ-</div>
+                                    <div className="text-xl font-bold font-sans">{category.priceLabel.replace("החל מ-", "")}</div>
+                                </div>
+                            </div>
+
+                            <div className="px-1 text-center md:text-right">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <h3 className="text-xl font-bold text-wood mb-2 font-serif group-hover:text-brand-green transition-colors leading-tight">
+                                            {category.title}
+                                        </h3>
+                                        <p className="text-wood/60 text-sm font-sans leading-relaxed">
+                                            {category.description}
+                                        </p>
+                                    </div>
+                                    <div className="text-brand-green mt-1 transition-transform duration-300">
+                                        {isExpanded ? <ChevronUp /> : <ChevronDown />}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Expanded Content (Dropdown) */}
+                            <div
+                                className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${isExpanded ? 'grid-rows-[1fr] opacity-100 mt-6 pb-2' : 'grid-rows-[0fr] opacity-0'}`}
+                            >
+                                <div className="overflow-hidden">
+                                    <div className="bg-cream/30 rounded-xl border-2 border-dashed border-wood/20 p-8 flex flex-col items-center justify-center gap-3 text-wood/40 min-h-[200px]">
+                                        <div className="font-medium text-lg">תפריט {category.title}</div>
+                                        <div className="text-xs opacity-70">(מקום זה שמור לתמונה)</div>
+                                    </div>
+                                    <div className="text-center mt-4">
+                                        <button className="text-sm text-brand-green font-bold hover:underline">
+                                            סגור
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div className="px-1 text-center md:text-right flex-grow">
-                            <h3 className="text-xl md:text-2xl font-bold text-wood mb-2 font-serif group-hover:text-brand-green transition-colors leading-tight">
-                                {category.title}
-                            </h3>
-                            <p className="text-wood/60 text-sm md:text-base font-sans leading-relaxed line-clamp-2">
-                                {category.description}
-                            </p>
-                        </div>
-
-                        <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0 flex items-center gap-2 text-brand-green text-sm font-bold md:hidden">
-                            <span>צפה בתפריט</span>
-                            <ArrowLeft size={16} className="rtl-flip" />
-                        </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
-
-            {mounted && <MenuModal />}
         </section>
     );
 }
