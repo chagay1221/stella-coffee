@@ -19,10 +19,11 @@ export default function Hero() {
                     </h1>
 
                     <p className="text-white/90 text-lg md:text-2xl font-sans max-w-xl drop-shadow-md mb-10 font-light">
-                       קפה שמכבד את השקט של הבוקר
+                        קפה שמכבד את השקט של הבוקר
                     </p>
 
                     <a
+                        id="hero-navigate-btn"
                         href="https://waze.com/ul?ll=32.0478328,34.8979472&navigate=yes"
                         target="_blank"
                         rel="noopener noreferrer"
