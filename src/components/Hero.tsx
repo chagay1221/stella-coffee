@@ -13,13 +13,13 @@ export default function Hero() {
 
                 <div className="relative z-10 flex flex-col items-center max-w-3xl px-4 animate-fade-in-up">
                     <h1 className="text-5xl md:text-7xl font-bold text-white font-serif drop-shadow-lg mb-6 leading-[1.1]">
-                        ימים שטופי שמש
+                        ברוכים הבאים
                         <br />
-                        <span className="text-brand-green/90">וקפה משובח</span>
+                        <span className="text-brand-green/90">לסטלה קפה מגשימים</span>
                     </h1>
 
                     <p className="text-white/90 text-lg md:text-2xl font-sans max-w-xl drop-shadow-md mb-10 font-light">
-                        חוויה של שקט, טבע וטעמים ים-תיכוניים בלב המטע.
+                       קפה שמכבד את השקט של הבוקר
                     </p>
 
                     <a
