@@ -1,4 +1,4 @@
-import { TreeDeciduous, Baby, PawPrint } from "lucide-react";
+import { TreeDeciduous, Baby, Accessibility } from "lucide-react";
 
 export default function FeatureSection() {
     return (
@@ -30,36 +30,14 @@ export default function FeatureSection() {
                         </p>
                     </div>
 
-                    {/* Pet Friendly / Stroller Access - Using Pet as per design image usually, user said "Stroller Access"? 
-             User prompt: "Feature Section: ... "Playground", "Nature", and "Stroller Access.""
-             I will use "Stroller Access" logic but maybe icon for accessibility or stroller.
-             Lucide "Baby" is good for Stroller or generic baby. 
-             Let's use "Baby" for Playground (kids) and maybe "Accessibility" or "Car" (Pram?) for Stroller?
-             Wait, Lucide has "Stroller"? No. 
-             I will use "Carrot" (Nature), "Gamepad" (Playground)? 
-             Let's stick to the prompt text: "Nature", "Playground", "Stroller Access".
-             I used Tree for Nature. Baby for Playground is fine. 
-             For Stroller Access: Maybe "Waypoints" or "MapPin" or "CheckCircle"? 
-             Actually, let's look at the image provided in prompt if possible?
-             The image shows: Tree (Nature), Drop/Face (Playground?), Paw (Pet Friendly).
-             The USER PROMPT says: "Playground," "Nature," and "Stroller Access."
-             I will follow the PROMPT text, but maybe use the Pet Friendly visual style if it looks good, or stick to prompt. 
-             I'll use "Baby" for Playground and "Armchair" or "Accessibility" for Stroller? 
-             Let's use `Baby` for Stroller Access and `FerrisWheel` (or similar) for Playground.
-             But Lucide `FerrisWheel`? `Castle`?
-             
-             Let's update:
-             Nature: TreeDeciduous
-             Playground: Smile (Fun/Play)
-             Stroller Access: Baby (Stroller implies baby)
-          */}
+                    {/* Accessibility */}
                     <div className="flex flex-col items-center">
                         <div className="bg-sage/20 p-4 rounded-2xl mb-4 text-wood">
-                            <Baby className="w-8 h-8" />
+                            <Accessibility className="w-8 h-8" />
                         </div>
-                        <h3 className="text-xl font-bold text-wood mb-2 font-serif">גישה לעגלות</h3>
+                        <h3 className="text-xl font-bold text-wood mb-2 font-serif">נגיש לכולם</h3>
                         <p className="text-wood/70 text-sm max-w-xs px-4">
-                            שבילים נוחים ונגישים לכל סוגי העגלות, כדי שכולם יוכלו ליהנות.
+                            סטלה קפה מתאים לכל מי שאוהב את הטבע
                         </p>
                     </div>
                 </div>
